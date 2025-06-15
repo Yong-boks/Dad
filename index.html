@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Father's Day!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Confetti.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f7cac9 0%, #92a8d1 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+    .header {
+      margin-top: 40px;
+      font-size: 3em;
+      color: #283747;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-shadow: 2px 4px 8px #fff3;
+      text-align: center;
+    }
+    .reveal-area {
+      margin-top: 60px;
+      position: relative;
+      width: 300px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .girl {
+      width: 220px;
+      height: auto;
+      opacity: 0;
+      transform: translateY(40px) scale(0.9);
+      transition: opacity 0.7s 0.6s, transform 0.6s 0.6s;
+      z-index: 1;
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      transform: translate(-50%,40px) scale(0.9);
+    }
+    .girl.visible {
+      opacity: 1;
+      transform: translate(-50%, 0px) scale(1);
+    }
+    .cloud {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%) scale(0.95);
+      min-width: 180px;
+      min-height: 70px;
+      padding: 18px 24px 18px 34px;
+      background: #fff;
+      border-radius: 50px 50px 50px 50px / 60px 60px 60px 60px;
+      box-shadow: 0 8px 24px #0001, 0 1px 0 #fff;
+      font-size: 1.1em;
+      color: #415270;
+      display: none;
+      z-index: 2;
+      animation: cloudPop 0.7s cubic-bezier(.24,1.26,.52,1.02) 1;
+    }
+    .cloud.visible {
+      display: block;
+    }
+    @keyframes cloudPop {
+      0% { opacity: 0; transform: scale(0.7) translateY(-20px);}
+      100% { opacity: 1; transform: scale(0.95) translateY(0);}
+    }
+    .cloud:after {
+      content: '';
+      position: absolute;
+      left: 16%;
+      bottom: -18px;
+      width: 40px;
+      height: 24px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+    .reveal-btn {
+      margin: 60px auto 0 auto;
+      padding: 20px 44px;
+      font-size: 1.3em;
+      background: linear-gradient(90deg, #f9d423, #ff4e50);
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      box-shadow: 0 4px 20px #0002;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      transition: background 0.3s;
+      outline: none;
+    }
+    .reveal-btn:active {
+      background: linear-gradient(90deg, #ff4e50, #f9d423);
+    }
+    @media (max-width: 600px) {
+      .header { font-size: 2em; }
+      .reveal-area { width: 90vw; height: 55vw; max-width: 330px; max-height: 430px;}
+      .girl { width: 140px;}
+      .cloud { min-width: 120px; font-size: .92em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    HAPPY FATHER'S DAY..
+  </div>
+  <button class="reveal-btn" id="revealBtn">Click for a surprise!</button>
+  <div class="reveal-area">
+    <!-- Cute animated girl SVG (placeholder, swap for your own art if you want) -->
+    <svg class="girl" id="girlSVG" viewBox="0 0 210 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <ellipse cx="105" cy="200" rx="60" ry="35" fill="#ffe9e3"/>
+        <ellipse cx="105" cy="120" rx="70" ry="90" fill="#f7cac9"/>
+        <ellipse cx="105" cy="90" rx="40" ry="38" fill="#fff"/>
+        <ellipse cx="105" cy="112" rx="32" ry="28" fill="#fbeee6"/>
+        <ellipse cx="85" cy="100" rx="6" ry="10" fill="#415270"/>
+        <ellipse cx="125" cy="100" rx="6" ry="10" fill="#415270"/>
+        <ellipse cx="105" cy="120" rx="8" ry="5" fill="#d49a89"/>
+        <ellipse cx="105" cy="85" rx="32" ry="17" fill="#f7cac9"/>
+        <!-- Hair -->
+        <ellipse cx="57" cy="100" rx="24" ry="33" fill="#415270"/>
+        <ellipse cx="153" cy="100" rx="24" ry="33" fill="#415270"/>
+        <!-- Smile -->
+        <path d="M93 120 Q105 127 117 120" stroke="#b17650" stroke-width="3" fill="none"/>
+      </g>
+      <!-- Simple shoulder animation -->
+      <g id="shoulders">
+        <ellipse cx="75" cy="210" rx="28" ry="18" fill="#f7cac9"/>
+        <ellipse cx="135" cy="210" rx="28" ry="18" fill="#f7cac9"/>
+      </g>
+      <!-- Arms (in front, simple) -->
+      <g>
+        <path d="M60 200 Q50 220 80 230" stroke="#f7cac9" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M150 200 Q160 220 130 230" stroke="#f7cac9" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div class="cloud" id="cloud">
+      Thank you Dad, for all your love, wisdom, and support.<br>
+      I love you so much!
+    </div>
+  </div>
+  <script>
+    const revealBtn = document.getElementById('revealBtn');
+    const girlSVG = document.getElementById('girlSVG');
+    const cloud = document.getElementById('cloud');
+    let revealed = false;
+
+    // Animate girl's shoulders gently
+    function animateShoulders() {
+      const shoulders = document.getElementById("shoulders");
+      let t = 0;
+      setInterval(() => {
+        t += 0.05;
+        const y = 4 * Math.sin(t);
+        shoulders.setAttribute("transform", `translate(0,${y})`);
+      }, 50);
+    }
+
+    revealBtn.addEventListener('click', () => {
+      if (revealed) return;
+      revealed = true;
+      // Fire confetti
+      for(let i=0; i<3; ++i) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 85,
+            spread: 75 + 30*i,
+            origin: { y: 0.2 + 0.1*i }
+          });
+        }, i*250);
+      }
+      // Reveal girl and cloud
+      setTimeout(() => {
+        girlSVG.classList.add('visible');
+        setTimeout(() => {
+          cloud.classList.add('visible');
+        }, 500);
+      }, 600);
+      // Hide button
+      revealBtn.style.display = 'none';
+      animateShoulders();
+    });
+  </script>
+</body>
+</html>
