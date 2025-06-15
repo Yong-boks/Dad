@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7cac9 0%, #92a8d1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+.header {
+  margin-top: 40px;
+  font-size: 3em;
+  color: #283747;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 4px 8px #fff3;
+  text-align: center;
+}
+.reveal-area {
+  margin-top: 60px;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.girl {
+  width: 220px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  transition: opacity 0.7s 0.6s, transform 0.6s 0.6s;
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translate(-50%,40px) scale(0.9);
+}
+.girl.visible {
+  opacity: 1;
+  transform: translate(-50%, 0px) scale(1);
+}
+.cloud {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%) scale(0.95);
+  min-width: 180px;
+  min-height: 70px;
+  padding: 18px 24px 18px 34px;
+  background: #fff;
+  border-radius: 50px 50px 50px 50px / 60px 60px 60px 60px;
+  box-shadow: 0 8px 24px #0001, 0 1px 0 #fff;
+  font-size: 1.1em;
+  color: #415270;
+  display: none;
+  z-index: 2;
+  animation: cloudPop 0.7s cubic-bezier(.24,1.26,.52,1.02) 1;
+}
+.cloud.visible {
+  display: block;
+}
+@keyframes cloudPop {
+  0% { opacity: 0; transform: scale(0.7) translateY(-20px);}
+  100% { opacity: 1; transform: scale(0.95) translateY(0);}
+}
+.cloud:after {
+  content: '';
+  position: absolute;
+  left: 16%;
+  bottom: -18px;
+  width: 40px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+.reveal-btn {
+  margin: 60px auto 0 auto;
+  padding: 20px 44px;
+  font-size: 1.3em;
+  background: linear-gradient(90deg, #f9d423, #ff4e50);
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px #0002;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  transition: background 0.3s;
+  outline: none;
+}
+.reveal-btn:active {
+  background: linear-gradient(90deg, #ff4e50, #f9d423);
+}
+@media (max-width: 600px) {
+  .header { font-size: 2em; }
+  .reveal-area { width: 90vw; height: 55vw; max-width: 330px; max-height: 430px;}
+  .girl { width: 140px;}
+  .cloud { min-width: 120px; font-size: .92em;}
+}
